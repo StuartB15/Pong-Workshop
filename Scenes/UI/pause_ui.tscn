@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dixda3peqcrgk"]
+
+[ext_resource type="Script" uid="uid://bdv2230b4wg4i" path="res://Scripts/UI/pause_ui.gd" id="1_mx7s6"]
+[ext_resource type="Theme" uid="uid://dqvj263mycv4h" path="res://Assets/UI/ui_theme.tres" id="2_baubf"]
+[ext_resource type="Shader" uid="uid://dmk25w2atcgq3" path="res://Scripts/Shaders/blur_filter.gdshader" id="2_e158m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e158m"]
+shader = ExtResource("2_e158m")
+shader_parameter/blur_amount = 1.0
+
+[node name="PauseUI" type="CanvasLayer" unique_id=108688347]
+script = ExtResource("1_mx7s6")
+
+[node name="Control" type="Control" parent="." unique_id=1101879090]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_baubf")
+
+[node name="Background" type="ColorRect" parent="Control" unique_id=1973625944]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_e158m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1037930776]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.75
+offset_top = -69.0
+offset_right = 184.75
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Control/VBoxContainer" unique_id=564765184]
+layout_mode = 2
+offset_transform_position = Vector2(0, 200)
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Control/VBoxContainer" unique_id=252025975]
+layout_mode = 2
+text = "Resume"
+
+[node name="ExitButton" type="Button" parent="Control/VBoxContainer" unique_id=2019808693]
+layout_mode = 2
+text = "Close Game"

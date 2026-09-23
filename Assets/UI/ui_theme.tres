@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://dqvj263mycv4h"]
+
+[ext_resource type="FontFile" uid="uid://br532c5083rgu" path="res://Assets/UI/Fonts/Daydream DEMO.otf" id="1_jcm6l"]
+[ext_resource type="FontFile" uid="uid://cv83o8b6s308u" path="res://Assets/UI/Fonts/KiwiSoda.ttf" id="1_ocl7c"]
+
+[resource]
+default_font = ExtResource("1_ocl7c")
+default_font_size = 45
+Label/fonts/font = ExtResource("1_jcm6l")
+VBoxContainer/constants/separation = 30
