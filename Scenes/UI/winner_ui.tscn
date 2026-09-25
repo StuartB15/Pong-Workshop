@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://v81s2wk1suvr"]
+
+[ext_resource type="Script" uid="uid://bn0mk4fqahd08" path="res://Scripts/UI/winner_ui.gd" id="1_x5jy1"]
+[ext_resource type="Theme" uid="uid://dqvj263mycv4h" path="res://Assets/UI/ui_theme.tres" id="2_hrbvx"]
+[ext_resource type="Shader" uid="uid://dw1cyf7rrwefe" path="res://Scripts/Shaders/tiler.gdshader" id="3_tbw3n"]
+[ext_resource type="Shader" uid="uid://dmk25w2atcgq3" path="res://Scripts/Shaders/blur_filter.gdshader" id="3_vg5ga"]
+[ext_resource type="Shader" uid="uid://7u54vw1s5f3x" path="res://Scripts/Shaders/text_shine.gdshader" id="4_vg5ga"]
+[ext_resource type="Texture2D" uid="uid://cdq3nq3rtglj7" path="res://Assets/UI/Art/Zero.png" id="4_x5jy1"]
+[ext_resource type="Script" uid="uid://orb0h1wnbhsy" path="res://Scripts/UI/text_shine.gd" id="5_ntjox"]
+[ext_resource type="Texture2D" uid="uid://de1104h2in40w" path="res://Assets/UI/Art/One.png" id="5_vg5ga"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ukjyh"]
+shader = ExtResource("3_vg5ga")
+shader_parameter/blur_amount = 8.00000038
+shader_parameter/mix_amount = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbw3n"]
+shader = ExtResource("3_tbw3n")
+shader_parameter/g_random_seed = 0.0
+shader_parameter/g_grid_size = Vector2(16, 9)
+shader_parameter/g_cell_offset = Vector2(0, 0)
+shader_parameter/g_speed = Vector2(0.055, 0.04)
+shader_parameter/g_draw_size_min = 0.1210000057475
+shader_parameter/g_draw_size_max = 0.46000002185
+shader_parameter/tex_draw = ExtResource("4_x5jy1")
+shader_parameter/g_color_a = Color(1, 1, 1, 0)
+shader_parameter/g_color_b = Color(1, 1, 1, 1)
+shader_parameter/g_rot_global_speed = 1.0
+shader_parameter/g_rot_min_speed = 0.1
+shader_parameter/g_rot_max_speed = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ntjox"]
+shader = ExtResource("3_tbw3n")
+shader_parameter/g_random_seed = 0.245
+shader_parameter/g_grid_size = Vector2(16, 9)
+shader_parameter/g_cell_offset = Vector2(0.445, 0.62)
+shader_parameter/g_speed = Vector2(0.055, 0.04)
+shader_parameter/g_draw_size_min = 0.1210000057475
+shader_parameter/g_draw_size_max = 0.46000002185
+shader_parameter/tex_draw = ExtResource("5_vg5ga")
+shader_parameter/g_color_a = Color(0.13333334, 0.80784315, 0, 1)
+shader_parameter/g_color_b = Color(0.13249388, 0.80943793, 0, 1)
+shader_parameter/g_rot_global_speed = 1.0
+shader_parameter/g_rot_min_speed = 0.1
+shader_parameter/g_rot_max_speed = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_baubf"]
+shader = ExtResource("4_vg5ga")
+shader_parameter/shine_color = Color(0.95806724, 0.77575654, 1.1551381e-06, 1)
+shader_parameter/shine_progress = 0.0
+shader_parameter/shine_size = 0.7999999821184001
+shader_parameter/shine_angle = 45.0
+shader_parameter/text_size = Vector2(100, 100)
+
+[node name="WinnerUI" type="CanvasLayer" unique_id=108688347]
+process_mode = 3
+layer = 3
+script = ExtResource("1_x5jy1")
+
+[node name="Control" type="Control" parent="." unique_id=1101879090]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_hrbvx")
+
+[node name="Background" type="ColorRect" parent="Control" unique_id=1848259741]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ukjyh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BackgroundTiled1" type="ColorRect" parent="Control" unique_id=1973625944]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_tbw3n")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BackgroundTiled2" type="ColorRect" parent="Control" unique_id=152517184]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ntjox")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1037930776]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -226.375
+offset_top = -121.0
+offset_right = 226.375
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ScoreboardControl" type="Control" parent="Control/VBoxContainer" unique_id=1441203076]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -24.87)
+theme = ExtResource("2_hrbvx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/ScoreboardControl" unique_id=1631605930]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="LeftScoreLabel" type="Label" parent="Control/VBoxContainer/ScoreboardControl/HBoxContainer" unique_id=966374333]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "0"
+horizontal_alignment = 1
+
+[node name="MiddleLabel" type="Label" parent="Control/VBoxContainer/ScoreboardControl/HBoxContainer" unique_id=426926507]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "/"
+horizontal_alignment = 1
+
+[node name="RightScoreLabel" type="Label" parent="Control/VBoxContainer/ScoreboardControl/HBoxContainer" unique_id=1414251465]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "1"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Control/VBoxContainer" unique_id=564765184]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_baubf")
+layout_mode = 2
+offset_transform_position = Vector2(0, 200)
+theme_override_font_sizes/font_size = 100
+text = "Won!!!"
+horizontal_alignment = 1
+script = ExtResource("5_ntjox")
+shine_wait = 0.7
+
+[node name="RestartButton" type="Button" parent="Control/VBoxContainer" unique_id=2019808693]
+layout_mode = 2
+text = "Restart Game"
+
+[node name="ExitButton" type="Button" parent="Control/VBoxContainer" unique_id=1691063931]
+layout_mode = 2
+text = "Exit To Desktop"
+
+[node name="BlackScreen" type="ColorRect" parent="Control" unique_id=1899536875]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="Control/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

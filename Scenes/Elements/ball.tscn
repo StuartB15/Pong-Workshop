@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://dpwixudbtc3uy"]
+
+[ext_resource type="Script" uid="uid://cw4275wplkrne" path="res://Scripts/Elements/ball.gd" id="1_v2ef3"]
+[ext_resource type="Texture2D" uid="uid://qv4rd5fs1uou" path="res://Assets/Elements/BallSpriteSheet.png" id="2_lijcn"]
+[ext_resource type="Texture2D" uid="uid://de1104h2in40w" path="res://Assets/UI/Art/One.png" id="3_k7jdi"]
+[ext_resource type="PackedScene" uid="uid://og6rfh2td5pl" path="res://Scenes/Elements/trail_2d.tscn" id="3_r3d20"]
+[ext_resource type="Texture2D" uid="uid://cdq3nq3rtglj7" path="res://Assets/UI/Art/Zero.png" id="4_1htij"]
+
+[sub_resource type="Curve" id="Curve_6wmo4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08494208, 1), 0.0, 0.0, 0, 0, Vector2(0.81853276, 1), -0.059268318, -0.059268318, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwh58"]
+size = Vector2(60, 60)
+
+[node name="Ball" type="CharacterBody2D" unique_id=891757035 groups=["Ball"]]
+script = ExtResource("1_v2ef3")
+
+[node name="ZeroParticles" type="CPUParticles2D" parent="." unique_id=531302236]
+unique_name_in_owner = true
+emitting = false
+amount = 16
+texture = ExtResource("4_1htij")
+lifetime = 0.9
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 180.0
+angular_velocity_min = -145.0
+angular_velocity_max = 145.0
+scale_amount_min = 0.3
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_6wmo4")
+
+[node name="OneParticles" type="CPUParticles2D" parent="." unique_id=2063085612]
+unique_name_in_owner = true
+emitting = false
+amount = 16
+texture = ExtResource("3_k7jdi")
+lifetime = 0.9
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 180.0
+angular_velocity_min = -145.0
+angular_velocity_max = 145.0
+scale_amount_min = 0.3
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_6wmo4")
+color = Color(0, 1, 0, 1)
+
+[node name="Trail2D" parent="." unique_id=924580815 instance=ExtResource("3_r3d20")]
+unique_name_in_owner = true
+default_trail_color = Color(1, 1, 1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1361136201 groups=["Ball"]]
+unique_name_in_owner = true
+texture = ExtResource("2_lijcn")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1046561824]
+shape = SubResource("RectangleShape2D_xwh58")
+
+[node name="DebounceTimer" type="Timer" parent="." unique_id=1841183415]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 0.05
+
+[connection signal="timeout" from="DebounceTimer" to="." method="_on_debounce_timer_timeout"]

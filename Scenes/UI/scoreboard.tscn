@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://d3cjmlmo4vara"]
+
+[ext_resource type="Theme" uid="uid://dqvj263mycv4h" path="res://Assets/UI/ui_theme.tres" id="1_gmgcu"]
+[ext_resource type="Script" uid="uid://ba54ufhmq6r33" path="res://Scripts/UI/scoreboard.gd" id="1_nq3li"]
+[ext_resource type="FontFile" uid="uid://ctw1rofupjfk0" path="res://Assets/UI/Fonts/Minecraft.ttf" id="2_ua5kx"]
+[ext_resource type="Texture2D" uid="uid://cdq3nq3rtglj7" path="res://Assets/UI/Art/Zero.png" id="4_3wkum"]
+
+[sub_resource type="Curve" id="Curve_a48yl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08494208, 1), 0.0, 0.0, 0, 0, Vector2(0.81853276, 1), -0.059268318, -0.059268318, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="Scoreboard" type="CanvasLayer" unique_id=1097175559]
+script = ExtResource("1_nq3li")
+
+[node name="Control" type="Control" parent="." unique_id=1441203076]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0)
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 100)
+theme = ExtResource("1_gmgcu")
+
+[node name="LeftChangeParticles" type="CPUParticles2D" parent="Control" unique_id=526936579]
+unique_name_in_owner = true
+position = Vector2(-113.36499, 110)
+emitting = false
+amount = 16
+texture = ExtResource("4_3wkum")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 180.0
+angular_velocity_min = -145.0
+angular_velocity_max = 145.0
+scale_amount_min = 0.3
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_a48yl")
+color = Color(0, 1, 0, 1)
+
+[node name="RightChangeParticles" type="CPUParticles2D" parent="Control" unique_id=1447924094]
+unique_name_in_owner = true
+position = Vector2(147.07996, 110)
+emitting = false
+amount = 16
+texture = ExtResource("4_3wkum")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 180.0
+angular_velocity_min = -145.0
+angular_velocity_max = 145.0
+scale_amount_min = 0.3
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_a48yl")
+color = Color(0, 1, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1631605930]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LeftScoreLabel" type="Label" parent="Control/HBoxContainer" unique_id=966374333]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ua5kx")
+theme_override_font_sizes/font_size = 90
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightScoreLabel" type="Label" parent="Control/HBoxContainer" unique_id=1414251465]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ua5kx")
+theme_override_font_sizes/font_size = 90
+text = "1"
+horizontal_alignment = 1

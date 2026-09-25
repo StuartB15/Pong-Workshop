@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cwpucf6sgjybh"]
+
+[ext_resource type="Script" uid="uid://ulvijxi5pl3m" path="res://Scripts/Elements/workshop_paddle.gd" id="1_sxweg"]
+[ext_resource type="Texture2D" uid="uid://ct0rc5fshk3p1" path="res://Assets/Elements/Paddle.png" id="2_r1ohv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gx7i8"]
+size = Vector2(40, 200)
+
+[node name="WorkshopPaddle" type="CharacterBody2D" unique_id=2061472275 groups=["Paddle"]]
+script = ExtResource("1_sxweg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1200911608]
+shape = SubResource("RectangleShape2D_gx7i8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=90620175]
+unique_name_in_owner = true
+texture = ExtResource("2_r1ohv")
+hframes = 2

@@ -6,5 +6,8 @@
 [resource]
 default_font = ExtResource("1_ocl7c")
 default_font_size = 45
+Button/colors/font_hover_color = Color(0.44637972, 0.96886915, 0, 1)
+Button/fonts/font = ExtResource("1_ocl7c")
+HBoxContainer/constants/separation = 200
 Label/fonts/font = ExtResource("1_jcm6l")
 VBoxContainer/constants/separation = 30

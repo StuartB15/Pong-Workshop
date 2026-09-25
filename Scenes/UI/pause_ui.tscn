@@ -3,12 +3,25 @@
 [ext_resource type="Script" uid="uid://bdv2230b4wg4i" path="res://Scripts/UI/pause_ui.gd" id="1_mx7s6"]
 [ext_resource type="Theme" uid="uid://dqvj263mycv4h" path="res://Assets/UI/ui_theme.tres" id="2_baubf"]
 [ext_resource type="Shader" uid="uid://dmk25w2atcgq3" path="res://Scripts/Shaders/blur_filter.gdshader" id="2_e158m"]
+[ext_resource type="Shader" uid="uid://7u54vw1s5f3x" path="res://Scripts/Shaders/text_shine.gdshader" id="4_175hy"]
+[ext_resource type="Script" uid="uid://orb0h1wnbhsy" path="res://Scripts/UI/text_shine.gd" id="5_i0vfa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e158m"]
 shader = ExtResource("2_e158m")
-shader_parameter/blur_amount = 1.0
+shader_parameter/blur_amount = 3.50000016625
+shader_parameter/mix_amount = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_baubf"]
+shader = ExtResource("4_175hy")
+shader_parameter/shine_color = Color(0.44705883, 0.96862745, 0, 1)
+shader_parameter/shine_progress = 0.0
+shader_parameter/shine_size = 0.499999988824
+shader_parameter/shine_angle = 45.0
+shader_parameter/text_size = Vector2(100, 100)
 
 [node name="PauseUI" type="CanvasLayer" unique_id=108688347]
+process_mode = 3
+layer = 2
 script = ExtResource("1_mx7s6")
 
 [node name="Control" type="Control" parent="." unique_id=1101879090]
@@ -29,27 +42,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1037930776]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -184.75
-offset_top = -69.0
-offset_right = 184.75
-offset_bottom = 69.0
+offset_left = -226.375
+offset_top = -121.0
+offset_right = 226.375
+offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="Label" parent="Control/VBoxContainer" unique_id=564765184]
+material = SubResource("ShaderMaterial_baubf")
 layout_mode = 2
 offset_transform_position = Vector2(0, 200)
 text = "Paused"
 horizontal_alignment = 1
+script = ExtResource("5_i0vfa")
 
 [node name="ResumeButton" type="Button" parent="Control/VBoxContainer" unique_id=252025975]
 layout_mode = 2
@@ -57,4 +74,7 @@ text = "Resume"
 
 [node name="ExitButton" type="Button" parent="Control/VBoxContainer" unique_id=2019808693]
 layout_mode = 2
-text = "Close Game"
+text = "Exit To Desktop"
+
+[connection signal="pressed" from="Control/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
